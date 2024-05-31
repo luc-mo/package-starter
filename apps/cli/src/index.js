@@ -39,4 +39,4 @@ const main = async () => {
 	}
 }
 
-program.version('0.0.0-beta.1').action(main)
+program.version('0.0.0-beta.4').action(main).parse(process.argv)
