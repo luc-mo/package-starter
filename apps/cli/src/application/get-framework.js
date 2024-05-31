@@ -1,6 +1,8 @@
+import inquirer from 'inquirer'
+
 export class GetFramework {
-	static async execute() {
-		return await inquirer.prompt([_frameworkPrompt])
+	static async execute(prevAnswers = {}) {
+		return await inquirer.prompt([_frameworkPrompt], prevAnswers)
 	}
 
 	static _frameworkPrompt = {
