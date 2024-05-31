@@ -5,4 +5,5 @@ export default defineConfig({
 	tsconfig: './jsconfig.json',
 	clean: true,
 	treeshake: false,
+	format: ['esm'],
 })
