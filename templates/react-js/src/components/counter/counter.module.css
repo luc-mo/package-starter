@@ -1,0 +1,31 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 20rem;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 1rem;
+}
+
+.count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column: span 2;
+  font-size: 2em;
+}
+
+.button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 1em;
+  border: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0066d3;
+}
