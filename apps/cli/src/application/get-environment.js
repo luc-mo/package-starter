@@ -2,7 +2,10 @@ import inquirer from 'inquirer'
 
 export class GetEnvironment {
 	static async execute(prevAnswers = {}) {
-		return await inquirer.prompt([_languagePrompt, _environmentPrompt], prevAnswers)
+		return await inquirer.prompt(
+			[GetEnvironment._languagePrompt, GetEnvironment._environmentPrompt],
+			prevAnswers
+		)
 	}
 
 	static _languagePrompt = {
