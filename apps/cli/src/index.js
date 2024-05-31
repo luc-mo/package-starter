@@ -26,7 +26,7 @@ const main = async () => {
 
 	const repoId = crypto.webcrypto.randomUUID()
 	const tempDir = path.join(os.tmpdir(), repoId)
-	const templateDir = path.join(tempDir, templates[answer])
+	const templateDir = path.join(tempDir, config.templates[answer])
 
 	try {
 		const git = simpleGit()
