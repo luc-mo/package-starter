@@ -11,9 +11,18 @@
 		"tag": "beta"
 	},
 	"scripts": {
-		"start": "node src/index.js"
+		"start": "node dist/index.js",
+		"build": "tsup"
 	},
 	"bin": {
 		"package-starter": "./src/index.js"
+	},
+	"dependencies": {
+		"commander": "12.1.0",
+		"inquirer": "9.2.22",
+		"simple-git": "3.24.0"
+	},
+	"devDependencies": {
+		"@types/inquirer": "9.0.7"
 	}
 }
