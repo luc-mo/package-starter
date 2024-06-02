@@ -14,14 +14,35 @@ export class CloneTemplate {
 		const templateDir = path.join(tempDir, config.templates[templateKey])
 
 		try {
-			const git = simpleGit()
-			await git.clone(config.repoUrl, tempDir)
-			fs.cpSync(templateDir, appDir, { recursive: true })
+			await this._cloneRepositoy(tempDir)
+			this._rewritePackageJson(templateDir, answer)
+			this._copyTemplate(templateDir, appDir)
 		} catch (error) {
 			// TODO - create a custom error to handle this
 			console.error(error)
 		} finally {
-			fs.rmSync(tempDir, { recursive: true, force: true })
+			this._removeTempDir(tempDir)
 		}
+	}
+
+	async _cloneRepositoy(tempDir) {
+		const git = simpleGit()
+		await git.clone(config.repoUrl, tempDir)
+	}
+
+	async _rewritePackageJson(templateDir, answer) {
+		const packageJsonPath = path.join(templateDir, 'package.json')
+		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
+		packageJson.name = answer.name
+		packageJson.author = answer.author
+		fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
+	}
+
+	_copyTemplate(templateDir, appDir) {
+		fs.cpSync(templateDir, appDir, { recursive: true })
+	}
+
+	_removeTempDir(tempDir) {
+		fs.rmSync(tempDir, { recursive: true, force: true })
 	}
 }
