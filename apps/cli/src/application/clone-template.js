@@ -35,6 +35,7 @@ export class CloneTemplate {
 		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
 		packageJson.name = answer.name
 		packageJson.author = answer.author
+		packageJson.description = answer.description
 		fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
 	}
 

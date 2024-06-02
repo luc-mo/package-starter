@@ -7,6 +7,7 @@ export class GetTemplatePrompt {
 	async execute() {
 		const answers = await inquirer.prompt([
 			this._packageNamePrompt,
+			this._descriptionPrompt,
 			this._authorPrompt,
 			this._languagePrompt,
 			this._environmentPrompt,
@@ -21,6 +22,12 @@ export class GetTemplatePrompt {
 		message: 'Enter the package name:',
 		default: config.defaultName,
 		validate: this._validatePackageName,
+	}
+
+	_descriptionPrompt = {
+		type: 'input',
+		name: 'description',
+		message: 'Enter the package description:',
 	}
 
 	_authorPrompt = {
