@@ -1,6 +1,7 @@
 export class Answer {
-	constructor({ name, author, language, environment, framework }) {
+	constructor({ name, description, author, language, environment, framework }) {
 		this.name = name
+		this.description = description
 		this.author = author
 		this._answers = [language, environment, framework].filter(Boolean)
 	}

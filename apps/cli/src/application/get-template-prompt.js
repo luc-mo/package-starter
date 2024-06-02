@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
-import { PackageName, InvalidPackageNameError } from '@/domain/package-name'
+import { config } from '@/infrastructure/config'
 import { Answer } from '@/domain/answer'
+import { PackageName, InvalidPackageNameError } from '@/domain/package-name'
 
 export class GetTemplatePrompt {
 	async execute() {
@@ -18,6 +19,7 @@ export class GetTemplatePrompt {
 		type: 'input',
 		name: 'name',
 		message: 'Enter the package name:',
+		default: config.defaultName,
 		validate: this._validatePackageName,
 	}
 
