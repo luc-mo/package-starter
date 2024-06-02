@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { version } from '../package.json'
+import { name, version, description } from '../package.json'
 import { program } from 'commander'
 
 import { config } from './infrastructure/config'
@@ -27,4 +27,10 @@ const main = async () => {
 	}
 }
 
-program.version(version).action(main).parse(process.argv)
+program
+	.name(name)
+	.version(version)
+	.description(description)
+	.usage('./your-project-directory')
+	.action(main)
+	.parse(process.argv)
