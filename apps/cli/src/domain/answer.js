@@ -5,7 +5,7 @@ export class Answer {
 		this._answers = [language, environment, framework].filter(Boolean)
 	}
 
-	toString() {
+	getTemplateKey() {
 		return this._answers.join('.')
 	}
 }

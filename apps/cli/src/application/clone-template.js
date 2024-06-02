@@ -9,7 +9,9 @@ export class CloneTemplate {
 	async execute({ appDir, answer }) {
 		const tempId = crypto.randomUUID()
 		const tempDir = path.join(os.tmpdir(), tempId)
-		const templateDir = path.join(tempDir, config.templates[answer])
+
+		const templateKey = answer.getTemplateKey()
+		const templateDir = path.join(tempDir, config.templates[templateKey])
 
 		try {
 			const git = simpleGit()

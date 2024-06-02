@@ -1,14 +1,30 @@
 import inquirer from 'inquirer'
+import { PackageName, InvalidPackageNameError } from '@/domain/package-name'
 import { Answer } from '@/domain/answer'
 
 export class GetTemplatePrompt {
 	async execute() {
 		const answers = await inquirer.prompt([
+			this._packageNamePrompt,
+			this._authorPrompt,
 			this._languagePrompt,
 			this._environmentPrompt,
 			this._frameworkPrompt,
 		])
-		return new Answer(answers).toString()
+		return new Answer(answers)
+	}
+
+	_packageNamePrompt = {
+		type: 'input',
+		name: 'name',
+		message: 'Enter the package name:',
+		validate: this._validatePackageName,
+	}
+
+	_authorPrompt = {
+		type: 'input',
+		name: 'author',
+		message: 'Enter the author name:',
 	}
 
 	_languagePrompt = {
@@ -40,6 +56,19 @@ export class GetTemplatePrompt {
 			{ name: 'Vue', value: 'vue', disabled: true },
 		],
 		when: this._checkFrameworkPath,
+	}
+
+	_validatePackageName(input) {
+		try {
+			const packageName = new PackageName(input)
+			packageName.validate()
+			return true
+		} catch (error) {
+			if (error instanceof InvalidPackageNameError) {
+				return error.message
+			}
+			return 'An error occurred while validating the package name'
+		}
 	}
 
 	_checkFrameworkPath(answers) {
