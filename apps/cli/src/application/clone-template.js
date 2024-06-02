@@ -26,11 +26,13 @@ export class CloneTemplate {
 	}
 
 	async _cloneRepositoy(tempDir) {
+		console.log('\x1b[32m%s\x1b[0m', '*', 'Cloning template...')
 		const git = simpleGit()
 		await git.clone(config.repoUrl, tempDir)
 	}
 
 	async _rewritePackageJson(templateDir, answer) {
+		console.log('\x1b[32m%s\x1b[0m', '*', 'Rewriting package.json file...')
 		const packageJsonPath = path.join(templateDir, 'package.json')
 		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
 		packageJson.name = answer.name
@@ -40,10 +42,12 @@ export class CloneTemplate {
 	}
 
 	_copyTemplate(templateDir, appDir) {
+		console.log('\x1b[32m%s\x1b[0m', '*', 'Copying template to destination...')
 		fs.cpSync(templateDir, appDir, { recursive: true })
 	}
 
 	_removeTempDir(tempDir) {
+		console.log('\x1b[32m%s\x1b[0m', '*', 'Removing temporary directory...')
 		fs.rmSync(tempDir, { recursive: true, force: true })
 	}
 }
