@@ -4,5 +4,7 @@ export const config = {
 	templates: {
 		'js.browser.react': 'templates/react-js',
 		'ts.browser.react': 'templates/react-ts',
+		'js.node': 'templates/node-js',
+		'ts.node': 'templates/node-ts',
 	},
 }

@@ -52,7 +52,7 @@ export class GetTemplatePrompt {
 		message: 'Select an environment:',
 		choices: [
 			{ name: 'Browser', value: 'browser' },
-			{ name: 'Node.js', value: 'node', disabled: true },
+			{ name: 'Node.js', value: 'node' },
 		],
 	}
 
